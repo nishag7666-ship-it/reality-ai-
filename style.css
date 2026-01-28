@@ -1,1 +1,304 @@
+body {
+  margin: 0;
+  font-family: 'Orbitron', monospace;
+  background: black;
+  color: red;
+  overflow-x: hidden;
+}
 
+.matrix-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,0,0,0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: drift 10s linear infinite;
+  z-index: -1;
+}
+
+@keyframes drift {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+
+header {
+  text-align: center;
+  padding: 40px;
+}
+
+.input-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+textarea {
+  width: 80%;
+  height: 120px;
+  background: black;
+  color: red;
+  border: 1px solid red;
+  padding: 10px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 30px;
+  background: red;
+  color: black;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.output {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  padding: 30px;
+}
+
+.card {
+  border: 1px solid red;
+  padding: 15px;
+  min-height: 80px;
+}
+.meter {
+  width: 100%;
+  height: 10px;
+  background: #330000;
+  margin-top: 10px;
+  border: 1px solid red;
+}
+
+#meterFill {
+  height: 100%;
+  width: 0%;
+  background: red;
+  transition: width 1s ease;
+}
+.card {
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px red; }
+  50% { box-shadow: 0 0 15px red; }
+  100% { box-shadow: 0 0 5px red; }
+}
+
+button:hover {
+  box-shadow: 0 0 15px red;
+}
+/* WELCOME OVERLAY */
+#welcomeOverlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-family: monospace;
+}
+
+.welcome-box {
+  text-align: center;
+  position: relative;
+}
+
+.glitch {
+  font-size: 3rem;
+  text-shadow: 0 0 10px red;
+  animation: flicker 2s infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+#welcomeOverlay button {
+  margin-top: 30px;
+  padding: 10px 25px;
+  background: black;
+  color: red;
+  border: 1px solid red;
+  cursor: pointer;
+}
+
+#welcomeOverlay button:hover {
+  background: red;
+  color: black;
+}
+
+.scan-lines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255,0,0,0.05),
+    rgba(255,0,0,0.05) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+/* SCORE COLOR LOGIC */
+.low-score {
+  color: #ff3b3b;
+}
+
+.medium-score {
+  color: #ffcc00;
+}
+/* TRUST INDICATOR STYLES */
+.trust-card {
+  border: 2px solid #444;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.trust-safe {
+  border-color: #00ff99;
+  color: #00ff99;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+.trust-warning {
+  border-color: #ffcc00;
+  color: #ffcc00;
+  box-shadow: 0 0 15px #ffcc00;
+}
+
+.trust-danger {
+  border-color: #ff0033;
+  color: #ff0033;
+  box-shadow: 0 0 15px #ff0033;
+}
+.output {
+  perspective: 1200px;
+}
+
+.card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: rotateX(6deg) rotateY(-6deg) scale(1.02);
+  box-shadow: 0 0 25px rgba(0,255,255,0.25);
+}
+#scanOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,255,0.05),
+    rgba(0,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 6px
+  );
+  opacity: 0;
+  animation: scan 1s linear;
+}
+
+@keyframes scan {
+  from { opacity: 0.8; }
+  to { opacity: 0; }
+}
+
+
+
+.high-score {
+  color: #00ff9c;
+}
+.glitch {
+  position: relative;
+  animation: glitch 1.5s infinite;
+}
+
+@keyframes glitch {
+  0% { text-shadow: 2px 2px red; }
+  20% { text-shadow: -2px -2px cyan; }
+  40% { text-shadow: 2px -2px lime; }
+  60% { text-shadow: -2px 2px magenta; }
+  100% { text-shadow: 2px 2px red; }
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px currentColor; }
+  50% { box-shadow: 0 0 20px currentColor; }
+  100% { box-shadow: 0 0 5px currentColor; }
+}
+
+#meterFill {
+  animation: pulse 1.5s infinite;
+}
+.card {
+  background: rgba(10, 15, 20, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,255,255,0.2);
+  box-shadow: 0 0 25px rgba(0,255,255,0.15);
+}
+/* HOMEPAGE OVERLAY */
+#homeOverlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #050505, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.home-box {
+  text-align: center;
+  padding: 40px;
+  border: 2px solid #0f0;
+  box-shadow: 0 0 40px #0f0;
+  animation: float 4s ease-in-out infinite;
+}
+
+.tagline {
+  margin: 10px 0 25px;
+  color: #9f9;
+  font-size: 1.1rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.feature-card {
+  padding: 12px;
+  border: 1px solid #0f0;
+  box-shadow: 0 0 10px #0f0;
+  animation: pulse 2.5s infinite;
+}
+
+.home-box button {
+  padding: 12px 30px;
+  background: black;
+  color: #0f0;
+  border: 2px solid #0f0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 10px #0f0; }
+  50% { box-shadow: 0 0 25px #0f0; }
+}
